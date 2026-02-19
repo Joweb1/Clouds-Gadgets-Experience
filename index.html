@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clouds Gadgets | Future Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // We manage theme via CSS vars, but this enables 'dark:' support if needed
+        theme: {
+          extend: {
+            colors: {
+              midnight: 'var(--bg-midnight)', 
+              charcoal: 'var(--bg-charcoal)', 
+              deep: 'var(--bg-deep)',
+              platinum: 'var(--text-platinum)',
+              white: 'rgba(var(--color-white), <alpha-value>)', // Dynamic White (Inverts in light mode)
+              'pure-white': '#ffffff', // For mix-blend-difference
+              accent: 'var(--accent, #a855f7)',
+              'accent-glow': '#d8b4fe',
+              glass: 'rgba(var(--color-white), 0.03)', // Dynamic Glass
+            },
+            fontFamily: {
+              display: ['Space Grotesk', 'sans-serif'],
+              body: ['Inter', 'sans-serif'],
+              sans: ['Inter', 'sans-serif'],
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      :root {
+        --accent: #a855f7;
+        
+        /* Dark Mode (Default) */
+        --bg-midnight: #030014;
+        --bg-charcoal: #0f0728;
+        --bg-deep: #0a051e;
+        --text-platinum: #e2e8f0;
+        --color-white: 255, 255, 255;
+        
+        /* Card Styles (Glass in Dark) */
+        --bg-card: rgba(15, 7, 40, 0.8);
+        --card-border: rgba(226, 232, 240, 0.1);
+        --card-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+        --card-backdrop: blur(12px);
+        --text-card: #e2e8f0;
+      }
+
+      [data-theme='light'] {
+        /* Light Mode */
+        --bg-midnight: #ffffff;
+        --bg-charcoal: #f1f5f9;
+        --bg-deep: #f8fafc;
+        --text-platinum: #334155;
+        --color-white: 15, 23, 42; /* Slate-950 (Almost Black) */
+
+        /* Card Styles (Solid White in Light) */
+        --bg-card: #ffffff;
+        --card-border: #e2e8f0;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --card-backdrop: none;
+        --text-card: #1e293b;
+      }
+
+      /* Specific overrides for muted text in light mode for better contrast */
+      [data-theme='light'] .text-slate-400 {
+        color: #64748b; /* Slate-500 */
+      }
+      [data-theme='light'] .text-slate-300 {
+        color: #475569; /* Slate-600 */
+      }
+      [data-theme='light'] .text-slate-500 {
+        color: #64748b;
+      }
+
+      body {
+        background-color: var(--bg-midnight);
+        color: var(--text-platinum);
+        overflow-x: hidden;
+        cursor: none;
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+
+      /* Transitions for themeable properties */
+      .bg-midnight, .bg-charcoal, .bg-deep, .text-white, .border-white\/10, .border-white\/20, .bg-white\/5, .bg-white\/10 {
+        transition-property: background-color, border-color, color, fill, stroke;
+        transition-duration: 500ms;
+        transition-timing-function: ease-in-out;
+      }
+      
+      /* Noise Texture */
+      .bg-noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+      [data-theme='light'] .bg-noise {
+        filter: invert(1);
+        opacity: 0.05;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-midnight);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--bg-charcoal);
+        border-radius: 4px;
+        border: 1px solid var(--text-platinum);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent);
+      }
+      
+      ::selection {
+        background: var(--accent);
+        color: #ffffff;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^6.28.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "gsap": "https://esm.sh/gsap@^3.14.2",
+    "@google/genai": "https://esm.sh/@google/genai"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

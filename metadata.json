@@ -1,0 +1,7 @@
+{
+  "name": "Clouds Gadgets Experience",
+  "description": "A premium, cinematic landing page for Clouds Gadgets featuring smooth scroll interactions, WebGL-style backgrounds, and high-end aesthetics.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
